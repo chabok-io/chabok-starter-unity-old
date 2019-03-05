@@ -1,13 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChabokPush : MonoBehaviour {
 
+    public Text txt;
+
 	// Use this for initialization
 	void Start () {
-        Debug.Log("################### OH NOOOOOOO");
-        //Init();
+        Log("################### OH NOOOOOOO");
+        Init();
     }
 	
 	// Update is called once per frame
@@ -19,17 +22,17 @@ public class ChabokPush : MonoBehaviour {
     {
         using (AndroidJavaClass mainClass = new AndroidJavaClass("com.adpdigital.push.AdpPushClient"))
         {
-            Debug.Log(1);
+            Log(1);
             AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
             AndroidJavaObject activity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
             AndroidJavaObject context = activity.Call<AndroidJavaObject>("getApplicationContext");
-            Debug.Log(2);
+            Log(2);
             mainClass.CallStatic<AndroidJavaObject>("init", context, unityPlayer, "tojfojwo/418500099884", "71ccffab0597699fc338b8709bf6b32a18024871", "nacjerkogo", "rofuczapoz");
-            Debug.Log(3);
-            Debug.Log(mainClass.CallStatic<AndroidJavaObject>("get"));
-            Debug.Log(4);
-            Debug.Log(mainClass.CallStatic<AndroidJavaObject>("get").Call<AndroidJavaObject>("register", SystemInfo.deviceUniqueIdentifier));
-            Debug.Log(5);
+            Log(3);
+            Log(mainClass.CallStatic<AndroidJavaObject>("get"));
+            Log(4);
+            Log(mainClass.CallStatic<AndroidJavaObject>("get").Call<AndroidJavaObject>("register", SystemInfo.deviceUniqueIdentifier));
+            Log(5);
         }
     }
 
@@ -54,4 +57,10 @@ public class ChabokPush : MonoBehaviour {
     //    // Call PrintString in bridge, with our parameters.
     //    bridge.Call("PrintString", parameters);
     //}
+
+    private void Log(object text)
+    {
+        txt.text += "\n";
+        txt.text += text;
+    }
 }
