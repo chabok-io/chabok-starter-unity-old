@@ -32,7 +32,7 @@ public class ChabokPush : MonoBehaviour {
             AndroidJavaObject context = activity.Call<AndroidJavaObject>("getApplicationContext");
 
             Log("~~~~~~> 3 Geting init ");
-            mainClass.CallStatic<AndroidJavaObject>("init", context, unityPlayer, "adp-nms-push/845225163503", "e2100f0d7e071c7450f04e530bda746da2fc493b", "adp", "test");
+            mainClass.CallStatic<AndroidJavaObject>("init", context, unityPlayer, "APP_ID/SENDER_ID", "API_KEY", "USERNAME", "PASSWORD");
 
             Log("~~~~~~> 4 Geting setDevelopment ");
             Log(mainClass.CallStatic<AndroidJavaObject>("get").Call<AndroidJavaObject>("setDevelopment", true));
