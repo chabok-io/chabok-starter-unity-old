@@ -5,6 +5,39 @@ using UnityEngine.UI;
 
 public class ChabokPush : MonoBehaviour {
 
+
+    private AndroidJavaClass _instance;
+
+    #region Properties
+
+    private AndroidJavaClass _adpPushClientClass;
+    private AndroidJavaClass adpPushClientClass
+    {
+        get
+        {
+            if (_adpPushClientClass == null)
+            {
+                _adpPushClientClass = new AndroidJavaClass("com.adpdigital.push.AdpPushClient");
+            }
+            return _adpPushClientClass;
+        }
+    }
+
+    private AndroidJavaClass _mainActivityClass;
+    private AndroidJavaClass mainActivityClass
+    {
+        get
+        {
+            if(_mainActivityClass == null)
+            {
+                _mainActivityClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+            }
+            return _mainActivityClass;
+        }
+    }
+
+    #endregion
+
     public Text txt;
 
 	// Use this for initialization
@@ -20,8 +53,7 @@ public class ChabokPush : MonoBehaviour {
 
     private void Init()
     {
-        Log("~~~~~~> 0 INIIIIITTTT");
-
+   
         using (AndroidJavaClass mainClass = new AndroidJavaClass("com.adpdigital.push.AdpPushClient"))
         {
             Log("~~~~~~> 1 Get UnityPlayer class");
@@ -32,42 +64,20 @@ public class ChabokPush : MonoBehaviour {
             AndroidJavaObject context = activity.Call<AndroidJavaObject>("getApplicationContext");
 
             Log("~~~~~~> 3 Geting init ");
-            mainClass.CallStatic<AndroidJavaObject>("init", context, unityPlayer, "adp-nms-push/845225163503", "e2100f0d7e071c7450f04e530bda746da2fc493b", "adp", "test");
+            mainClass.CallStatic<AndroidJavaObject>("init", context, unityPlayer, "APP_ID/SENDER_ID", "API_KEY", "USERNAME", "PASSWORD");
 
             Log("~~~~~~> 4 Geting setDevelopment ");
             Log(mainClass.CallStatic<AndroidJavaObject>("get").Call<AndroidJavaObject>("setDevelopment", true));
 
-            mainClass.CallStatic<AndroidJavaObject>("get").Get<AndroidJavaClass>("foreground").Call("foreground",true);
+            //mainClass.CallStatic<AndroidJavaObject>("get").CallStatic<AndroidJavaClass>("foreground").CallStatic("foreground",true);
 
 
             Log("~~~~~~> 5 Geting register ");
-            Log(mainClass.CallStatic<AndroidJavaObject>("get").Call<AndroidJavaObject>("register", "98933195"));
+            Log(mainClass.CallStatic<AndroidJavaObject>("get").Call<AndroidJavaObject>("register", "USER_ID"));
 
             Log(5);
         }
     }
-
-    ////method that calls our native plugin.
-    //public void CallNativePlugin()
-    //{
-    //    // Retrieve the UnityPlayer class.
-    //    AndroidJavaClass unityPlayerClass = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-
-    //    // Retrieve the UnityPlayerActivity object ( a.k.a. the current context )
-    //    AndroidJavaObject unityActivity = unityPlayerClass.GetStatic<AndroidJavaObject>("currentActivity");
-
-    //    // Retrieve the "Bridge" from our native plugin.
-    //    // ! Notice we define the complete package name.              
-    //    AndroidJavaObject bridge = new AndroidJavaObject("plugins.twnkls.com.mylibrary.Bridge");
-
-    //    // Setup the parameters we want to send to our native plugin.              
-    //    object[] parameters = new object[2];
-    //    parameters[0] = unityActivity;
-    //    parameters[1] = "This is an call to native android!";
-
-    //    // Call PrintString in bridge, with our parameters.
-    //    bridge.Call("PrintString", parameters);
-    //}
 
     private void Log(object text)
     {
