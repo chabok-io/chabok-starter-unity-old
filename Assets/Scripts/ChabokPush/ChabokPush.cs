@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Application;
@@ -158,10 +158,8 @@ public class ChabokPush : MonoBehaviour
     /// Adds the tag to current userId.
     /// </summary>
     /// <param name="tagName">Tag name.</param>
-    public void AddTag(string tagName)
+    public void AddTag(string tagName, AndroidPluginCallback callback)
     {
-        Debug.Log(string.Format("Adding {0} tag", tagName));
-        AndroidPluginCallback callback = new AndroidPluginCallback();
         AdpPushClientInstance.Call("addTag", tagName, callback);
     }
 
