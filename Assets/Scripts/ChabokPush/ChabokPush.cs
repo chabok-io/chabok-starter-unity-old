@@ -146,6 +146,24 @@ public class ChabokPush : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets the defaul tracker for tracking pre-install campaigns.
+    /// </summary>
+    /// <param name="defaultTracker">Tracker id</param>
+    public void SetDefaulTracker(string defaultTracker)
+    {
+        AdpPushClientInstance.Call("setDefaultTracker", defaultTracker);
+    }
+
+    /// <summary>
+    /// Sets the user info.
+    /// </summary>
+    /// <param name="userInfo">User info.</param>
+    public void SetUserInfo(Dictionary<string, object> userInfo)
+    {
+        AdpPushClientInstance.Call("setUserInfo", userInfo);
+    }
+
+    /// <summary>
     /// Track the specified trackName and data of current userId.
     /// </summary>
     /// <param name="trackName">Track name.</param>
