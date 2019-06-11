@@ -13,8 +13,15 @@ public class Main : MonoBehaviour
         AndroidJavaObject context = currentActivity.Call<AndroidJavaObject>("getApplicationContext");
 
         var chabok = new ChabokPush();
-        chabok.Init(context, unityPlayerActivity, "APP_ID/SENDER_ID", "API_KEY", "USERNAME", "PASSWORD");
+        chabok.Init(context,
+             unityPlayerActivity,
+              "APP_ID/SENDERID",
+               "API_KEY",
+                "USERNAME",
+                 "PASSWORD");
         chabok.SetDevelopment(true);
+
+        //chabok.SetDefaulTracker("TRACKER_ID");
 
         var userId = chabok.GetUserId();
         if (userId != null)
@@ -26,13 +33,22 @@ public class Main : MonoBehaviour
             chabok.RegisterAsGuest();
         }
 
-        var callback = new AndroidPluginCallback();
-        callback.OnSuccess += (count) => { };
-        callback.OnError += (exception) => { };
+        //var callback = new AndroidPluginCallback();
+        //callback.OnSuccess += (count) => { 
+        
+        //};
+        //callback.OnError += (exception) => { 
+        
+        //};
 
-        chabok.AddTag("Test", callback);
+        //chabok.AddTag("Test", callback);
 
-        chabok.Track("LIKE");
+        //JSONObject data = new JSONObject(JSONObject.Type.OBJECT);
+        //data.AddField("field1", "5");
+
+
+        //chabok.Track("LIKE", null);
+
     }
 
     // Update is called once per frame
