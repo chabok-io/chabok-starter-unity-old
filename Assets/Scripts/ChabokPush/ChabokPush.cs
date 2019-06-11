@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Application;
@@ -181,9 +181,15 @@ public class ChabokPush : MonoBehaviour
         AdpPushClientInstance.Call("addTag", tagName, callback);
     }
 
-    #endregion
-
-    #region Private Methods
+    /// <summary>
+    /// Removes the tag.
+    /// </summary>
+    /// <param name="tagName">Tag name.</param>
+    /// <param name="callback">Callback.</param>
+    public void RemoveTag(string tagName, AndroidPluginCallback callback)
+    {
+        AdpPushClientInstance.Call("removeTag", tagName, callback);
+    }
 
     /// <summary>
     /// Gets the user identifier.
@@ -202,6 +208,10 @@ public class ChabokPush : MonoBehaviour
     {
         return AdpPushClientInstance.Call<string>("getInstallationId");
     }
+
+    #endregion
+
+    #region Private Methods
 
     /// <summary>
     /// Converts the dictionary to map for android object.
