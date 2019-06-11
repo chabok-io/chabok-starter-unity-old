@@ -11,6 +11,14 @@
             <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
         </activity>
         
+        <receiver
+            android:name="com.adpdigital.push.ChabokReferrerReceiver"
+            android:permission="android.permission.INSTALL_PACKAGES"
+            android:exported="true">
+                <intent-filter>
+                    <action android:name="com.android.vending.INSTALL_REFERRER" />
+                </intent-filter>
+        </receiver>
        <!-- <receiver android:name="com.google.android.gms.gcm.GcmReceiver" android:enabled="true" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
