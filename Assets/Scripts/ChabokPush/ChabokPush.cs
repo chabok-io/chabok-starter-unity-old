@@ -2,11 +2,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChabokPush : MonoBehaviour
 {
 
+    //#region Delegate methods
+
+    //public delegate void MessageReceivedHandler(String message);
+    //public delegate void ConnectionChangedHandler(String result);
+    //public delegate void NotificationShownHandler(String result);
+    //public delegate void NotificationOpenedHandler(String result);
+    //public delegate void RegisterationStatusHandler(String result);
+
+    //#endregion
+
     #region Class Properties
+
+    //public event MessageReceivedHandler MessageReceived;
+    //public event ConnectionChangedHandler ConnectionChanged;
+    //public event NotificationShownHandler NotificationShown;
+    //public event NotificationOpenedHandler NotificationOpened;
+    //public event RegisterationStatusHandler RegisterationStatus;
+
+    //public Text logger;
 
     private static AndroidJavaClass _adpPushClientClass;
     /// <summary>
@@ -72,6 +91,11 @@ public class ChabokPush : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Chabok unity proxy  to get chabok events.
+    /// </summary>
+    //private AndroidJavaObject _chabokUnityProxy { get; set; }
+
     #endregion
 
 
@@ -112,6 +136,22 @@ public class ChabokPush : MonoBehaviour
     public void Init(AndroidJavaObject context, AndroidJavaObject activity, string appId, string apiKey, string username, string password)
     {
         AdpPushClientClass.CallStatic<AndroidJavaObject>("init", context, activity, appId, apiKey, username, password);
+
+        //logger.text += "\n============== calling chabokUnityProxy cunstractor";
+
+        //String gameObjectName = "ChabokPush-UNITY";
+        ////GameObject go = new GameObject(gameObjectName);
+        ////go.AddComponent<ChabokPush>();
+        ////DontDestroyOnLoad(go);
+
+        //GameObject go = GameObject.Find(gameObjectName);
+        //go.AddComponent<ChabokPush>();
+        //DontDestroyOnLoad(go);
+
+        //logger.text += "\n============== GameObject = " + go.name;
+
+
+        //_chabokUnityProxy = new AndroidJavaObject("com.adpdigital.push.ChabokUnityProxy", go.name, context);
     }
 
     #endregion
@@ -260,4 +300,58 @@ public class ChabokPush : MonoBehaviour
 
 
     #endregion
+
+    //#region Native events
+
+    //private void onConnectionHandler(String connectionStatus)
+    //{
+    //    logger.text += "\n============== onConnectionHandler called";
+
+    //    if (this.ConnectionChanged != null)
+    //    {
+    //        this.ConnectionChanged.Invoke(connectionStatus);
+    //    }
+    //}
+
+    //private void onNotificationOpenedHandler(String notificationAction)
+    //{
+    //    Debug.Log("onNotificationOpenedHandler called");
+
+    //    if (this.NotificationOpened != null)
+    //    {
+    //        this.NotificationOpened.Invoke(notificationAction);
+    //    }
+    //}
+
+    //private void onShowNotificationHandler(String notificationPayload)
+    //{
+    //    Debug.Log("onShowNotificationHandler called");
+
+    //    if (this.NotificationShown != null)
+    //    {
+    //        this.NotificationShown.Invoke(notificationPayload);
+    //    }
+    //}
+
+    //private void onRegisterHandler(String registerationStatus)
+    //{
+    //    Debug.Log("onRegisterHandler called");
+
+    //    if (this.RegisterationStatus != null)
+    //    {
+    //        this.RegisterationStatus.Invoke(registerationStatus);
+    //    }
+    //}
+
+    //private void onMessageHandler(String messageJson)
+    //{
+    //    Debug.Log("onMessageHandler called");
+
+    //    if (this.MessageReceived != null)
+    //    {
+    //        this.MessageReceived.Invoke(messageJson);
+    //    }
+    //}
+
+    //#endregion
 }
