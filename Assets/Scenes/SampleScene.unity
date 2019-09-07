@@ -391,6 +391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a424c57f51e542f5abfddad901e040e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  txt: {fileID: 928376717}
 --- !u!4 &650751638
 Transform:
   m_ObjectHideFlags: 0
@@ -475,7 +476,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: 'This is Chabok Starter project:'
 --- !u!222 &928376718
 CanvasRenderer:
   m_ObjectHideFlags: 0
