@@ -1,4 +1,7 @@
-﻿# Release note
+# Release note
+
+## v0.4
+- Update android SDK verison [1.18.0](https://doc.chabok.io/android/release-note.html#%D9%86%D8%B3%D8%AE%D9%87-%DB%B2%DB%B1%DB%B8%DB%B0---%DB%B1%DB%B3%DB%B9%DB%B8%DB%B0%DB%B6%DB%B1%DB%B2)
 
 ## v0.3
 - Update android SDK verison [1.17.2](https://doc.chabokpush.com/android/release-note.html#%D9%86%D8%B3%D8%AE%D9%87-%DB%B2%DB%B1%DB%B7%DB%B2---%DB%B1%DB%B3%DB%B9%DB%B8%DB%B0%DB%B5%DB%B1%DB%B4)
